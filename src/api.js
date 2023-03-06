@@ -5,6 +5,7 @@ const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
 const axios = require("axios");
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(
@@ -13,6 +14,8 @@ app.use(
     extended: true,
   })
 );
+
+app.use('/api', createProxyMiddleware({ target: 'https://paul.blueboxonline.com/api/v1', changeOrigin: true }))
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -52,13 +55,8 @@ router.post("/login", async (req, res) => {
           username: req.body.email,
           password: req.body.password,
       }
-      // res.json("test login");
+
       let response = await axios.post("https://paul.blueboxonline.com/api/v1/users/login",loginData)
-      // res.header("Access-Control-Allow-Origin", "*");
-      // res.header(
-      //   "Access-Control-Allow-Headers",
-      //   "Origin, X-Requested-With, Content-Type, Accept"
-      // );
       res.json({success:true, message: response.headers['set-cookie']});
   } catch(e)  {
       // console.log(e);

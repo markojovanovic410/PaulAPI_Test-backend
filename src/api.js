@@ -46,13 +46,14 @@ router.post("/login", async (req, res) => {
           username: req.body.email,
           password: req.body.password,
       }
-      let response = await axios.post("https://paul.blueboxonline.com/api/v1/users/login",loginData)
-      // res.header("Access-Control-Allow-Origin", "*");
-      // res.header(
-      //   "Access-Control-Allow-Headers",
-      //   "Origin, X-Requested-With, Content-Type, Accept"
-      // );
-      res.json({success:true, message: response.headers['set-cookie']});
+      res.json("test login");
+      // let response = await axios.post("https://paul.blueboxonline.com/api/v1/users/login",loginData)
+      // // res.header("Access-Control-Allow-Origin", "*");
+      // // res.header(
+      // //   "Access-Control-Allow-Headers",
+      // //   "Origin, X-Requested-With, Content-Type, Accept"
+      // // );
+      // res.json({success:true, message: response.headers['set-cookie']});
   } catch(e)  {
       // console.log(e);
       res.json({success: false, message: 'fail'});

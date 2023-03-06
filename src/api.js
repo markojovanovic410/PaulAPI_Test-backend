@@ -17,135 +17,135 @@ app.use(
 
 app.use('/api', createProxyMiddleware({ target: 'https://paul.blueboxonline.com/api/v1', changeOrigin: true }))
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// // app.use(function(req, res, next) {
+// //   res.header("Access-Control-Allow-Origin", "*");
+// //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+// //   next();
+// // });
 
-const cors=require("cors");
-const corsOptions ={
-   origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
-}
+// const cors=require("cors");
+// const corsOptions ={
+//    origin:'*', 
+//    credentials:true,            //access-control-allow-credentials:true
+//    optionSuccessStatus:200,
+// }
 
-app.use(cors()) // Use this after the variable declaration
+// app.use(cors()) // Use this after the variable declaration
 
-// Define a route that responds with a JSON object when a GET request is made to the root path
-router.get("/", (req, res) => {
-  res.json({
-    hello: "hi!"
-  });
-});
-
-// router.post("/solc-compile", (req, res) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   const result = solcCompile(req.body);
-//   res.json(result);
+// // Define a route that responds with a JSON object when a GET request is made to the root path
+// router.get("/", (req, res) => {
+//   res.json({
+//     hello: "hi!"
+//   });
 // });
 
-router.post("/login", async (req, res) => {
-  try {
-      let loginData = {
-          username: req.body.email,
-          password: req.body.password,
-      }
+// // router.post("/solc-compile", (req, res) => {
+// //   res.header("Access-Control-Allow-Origin", "*");
+// //   res.header(
+// //     "Access-Control-Allow-Headers",
+// //     "Origin, X-Requested-With, Content-Type, Accept"
+// //   );
+// //   const result = solcCompile(req.body);
+// //   res.json(result);
+// // });
 
-      let response = await axios.post("https://paul.blueboxonline.com/api/v1/users/login",loginData)
-      res.json({success:true, message: response.headers['set-cookie']});
-  } catch(e)  {
-      // console.log(e);
-      res.json({success: false, message: 'fail'});
-  }    
-});
+// router.post("/login", async (req, res) => {
+//   try {
+//       let loginData = {
+//           username: req.body.email,
+//           password: req.body.password,
+//       }
 
-router.post("/session", async(req, res) => {
-  try {
-      const cookie = req.body.cookie
-      let response = await axios.get("https://paul.blueboxonline.com/api/v1/users/session",{
-          headers: {
-            'Cookie': cookie
-          }
-      })
-      // res.header("Access-Control-Allow-Origin", "*");
-      // res.header(
-      //   "Access-Control-Allow-Headers",
-      //   "Origin, X-Requested-With, Content-Type, Accept"
-      // );
-      res.json({success: true, message: response.data})
-  } catch(e){
-      res.json({success: false, message: ''})
-  }
-})
+//       let response = await axios.post("https://paul.blueboxonline.com/api/v1/users/login",loginData)
+//       res.json({success:true, message: response.headers['set-cookie']});
+//   } catch(e)  {
+//       // console.log(e);
+//       res.json({success: false, message: 'fail'});
+//   }    
+// });
 
-router.post("/table", async(req, res) => {
-  try {
-      const cookie = req.body.cookie
-      let response = await axios.get("https://paul.blueboxonline.com/api/v1/app/tabledata",{
-          headers: {
-            'Cookie': cookie
-          }
-      })
-      // res.header("Access-Control-Allow-Origin", "*");
-      // res.header(
-      //   "Access-Control-Allow-Headers",
-      //   "Origin, X-Requested-With, Content-Type, Accept"
-      // );
-      res.json({success: true, message: response.data})
-  } catch(e){
-      console.log(e);
-      res.json({success: false, message: ''})
-  }
-})
+// router.post("/session", async(req, res) => {
+//   try {
+//       const cookie = req.body.cookie
+//       let response = await axios.get("https://paul.blueboxonline.com/api/v1/users/session",{
+//           headers: {
+//             'Cookie': cookie
+//           }
+//       })
+//       // res.header("Access-Control-Allow-Origin", "*");
+//       // res.header(
+//       //   "Access-Control-Allow-Headers",
+//       //   "Origin, X-Requested-With, Content-Type, Accept"
+//       // );
+//       res.json({success: true, message: response.data})
+//   } catch(e){
+//       res.json({success: false, message: ''})
+//   }
+// })
 
-router.post("/logout", async(req, res) => {
-  try {
-      const cookie = req.body.cookie
-      let response = await axios.get("https://paul.blueboxonline.com/api/v1/users/logout",{
-          headers: {
-            'Cookie': cookie
-          }
-      })
-      // res.header("Access-Control-Allow-Origin", "*");
-      // res.header(
-      //   "Access-Control-Allow-Headers",
-      //   "Origin, X-Requested-With, Content-Type, Accept"
-      // );       
-      res.json({success: true, message: response.data})
-      } catch(e){
-          console.log(e);
-          res.json({success: false, message: ''})
-      }
-})
+// router.post("/table", async(req, res) => {
+//   try {
+//       const cookie = req.body.cookie
+//       let response = await axios.get("https://paul.blueboxonline.com/api/v1/app/tabledata",{
+//           headers: {
+//             'Cookie': cookie
+//           }
+//       })
+//       // res.header("Access-Control-Allow-Origin", "*");
+//       // res.header(
+//       //   "Access-Control-Allow-Headers",
+//       //   "Origin, X-Requested-With, Content-Type, Accept"
+//       // );
+//       res.json({success: true, message: response.data})
+//   } catch(e){
+//       console.log(e);
+//       res.json({success: false, message: ''})
+//   }
+// })
 
-router.post("/report", async(req, res) => {
-  try {
-      const cookie = req.body.cookie;
-      let reportData = req.body.reportData;
-      let response = await axios.post("https://paul.blueboxonline.com/api/v1/app/report", reportData, {
-          headers: {
-            'Cookie': cookie
-          }
-      })
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );
-       res.json({success: true, message: response.data})
-      } catch(e){
-          console.log(e);
-          res.json({success: false, message: ''})
-      }
-})
+// router.post("/logout", async(req, res) => {
+//   try {
+//       const cookie = req.body.cookie
+//       let response = await axios.get("https://paul.blueboxonline.com/api/v1/users/logout",{
+//           headers: {
+//             'Cookie': cookie
+//           }
+//       })
+//       // res.header("Access-Control-Allow-Origin", "*");
+//       // res.header(
+//       //   "Access-Control-Allow-Headers",
+//       //   "Origin, X-Requested-With, Content-Type, Accept"
+//       // );       
+//       res.json({success: true, message: response.data})
+//       } catch(e){
+//           console.log(e);
+//           res.json({success: false, message: ''})
+//       }
+// })
+
+// router.post("/report", async(req, res) => {
+//   try {
+//       const cookie = req.body.cookie;
+//       let reportData = req.body.reportData;
+//       let response = await axios.post("https://paul.blueboxonline.com/api/v1/app/report", reportData, {
+//           headers: {
+//             'Cookie': cookie
+//           }
+//       })
+//       res.header("Access-Control-Allow-Origin", "*");
+//       res.header(
+//         "Access-Control-Allow-Headers",
+//         "Origin, X-Requested-With, Content-Type, Accept"
+//       );
+//        res.json({success: true, message: response.data})
+//       } catch(e){
+//           console.log(e);
+//           res.json({success: false, message: ''})
+//       }
+// })
 
 
-app.use(`/.netlify/functions/api`, router);
+// app.use(`/.netlify/functions/api`, router);
 
 // Export the app and the serverless function
 module.exports = app;

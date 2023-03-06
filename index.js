@@ -98,6 +98,13 @@ app.post("/report", async(req, res) => {
         }
 })
 
+
+app.get("/", async(req, res) => {
+    res.write('Hello World!'); //write a response to the client
+    res.end(); //end the response
+});
+
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

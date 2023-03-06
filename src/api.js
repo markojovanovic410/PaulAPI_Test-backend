@@ -130,7 +130,7 @@ router.post("/report", async(req, res) => {
 })
 
 
-app.use(`/.netlify/functions/api`, router);
+app.use(`/api`, router);
 
 // Export the app and the serverless function
 module.exports = app;

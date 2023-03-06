@@ -14,6 +14,15 @@ app.use(
   })
 );
 
+const cors=require("cors");
+const corsOptions ={
+   origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
+
 // Define a route that responds with a JSON object when a GET request is made to the root path
 router.get("/", (req, res) => {
   res.json({

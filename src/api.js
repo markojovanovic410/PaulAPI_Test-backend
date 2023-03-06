@@ -21,7 +21,7 @@ const corsOptions ={
    optionSuccessStatus:200,
 }
 
-app.use(cors(corsOptions)) // Use this after the variable declaration
+app.use(cors()) // Use this after the variable declaration
 
 // Define a route that responds with a JSON object when a GET request is made to the root path
 router.get("/", (req, res) => {
@@ -47,11 +47,11 @@ router.post("/login", async (req, res) => {
           password: req.body.password,
       }
       let response = await axios.post("https://paul.blueboxonline.com/api/v1/users/login",loginData)
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );
+      // res.header("Access-Control-Allow-Origin", "*");
+      // res.header(
+      //   "Access-Control-Allow-Headers",
+      //   "Origin, X-Requested-With, Content-Type, Accept"
+      // );
       res.json({success:true, message: response.headers['set-cookie']});
   } catch(e)  {
       // console.log(e);
@@ -67,11 +67,11 @@ router.post("/session", async(req, res) => {
             'Cookie': cookie
           }
       })
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );
+      // res.header("Access-Control-Allow-Origin", "*");
+      // res.header(
+      //   "Access-Control-Allow-Headers",
+      //   "Origin, X-Requested-With, Content-Type, Accept"
+      // );
       res.json({success: true, message: response.data})
   } catch(e){
       res.json({success: false, message: ''})
@@ -86,11 +86,11 @@ router.post("/table", async(req, res) => {
             'Cookie': cookie
           }
       })
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );
+      // res.header("Access-Control-Allow-Origin", "*");
+      // res.header(
+      //   "Access-Control-Allow-Headers",
+      //   "Origin, X-Requested-With, Content-Type, Accept"
+      // );
       res.json({success: true, message: response.data})
   } catch(e){
       console.log(e);
@@ -106,11 +106,12 @@ router.post("/logout", async(req, res) => {
             'Cookie': cookie
           }
       })
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );       res.json({success: true, message: response.data})
+      // res.header("Access-Control-Allow-Origin", "*");
+      // res.header(
+      //   "Access-Control-Allow-Headers",
+      //   "Origin, X-Requested-With, Content-Type, Accept"
+      // );       
+      res.json({success: true, message: response.data})
       } catch(e){
           console.log(e);
           res.json({success: false, message: ''})

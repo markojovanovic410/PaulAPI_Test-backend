@@ -1,29 +1,22 @@
 {
-  "name": "blocktrade-scrapper",
+  "name": "solcCompileApi_Netlify",
   "version": "1.0.0",
-  "description": "Get block trades data and save into mysql.",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "db:migrate": "knex migrate:latest --knexfile db/knexfile.js",
-    "db:seed": "knex seed:run --knexfile db/knexfile.js"
+    "start": "netlify-lambda serve src",
+    "build": "netlify-lambda build src",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "block",
-    "trade"
-  ],
-  "author": "Marko",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.27.2",
-    "body-parser": "^1.20.0",
-    "child_process": "^1.0.2",
-    "circular-json": "^0.5.9",
-    "cookie": "^0.5.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "nodemon": "^2.0.16"
+    "axios": "^1.3.4",
+    "express": "^4.18.2",
+    "netlify-lambda": "^2.0.16",
+    "serverless": "^3.27.0",
+    "serverless-http": "^3.1.1",
+    "solc": "^0.8.19"
   }
 }

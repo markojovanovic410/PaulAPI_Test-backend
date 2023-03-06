@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
   }    
 });
 
-app.post("/session", async(req, res) => {
+router.post("/session", async(req, res) => {
   try {
       const cookie = req.body.cookie
       let response = await axios.get("https://paul.blueboxonline.com/api/v1/users/session",{
@@ -69,7 +69,7 @@ app.post("/session", async(req, res) => {
   }
 })
 
-app.post("/table", async(req, res) => {
+router.post("/table", async(req, res) => {
   try {
       const cookie = req.body.cookie
       let response = await axios.get("https://paul.blueboxonline.com/api/v1/app/tabledata",{
@@ -89,7 +89,7 @@ app.post("/table", async(req, res) => {
   }
 })
 
-app.post("/logout", async(req, res) => {
+router.post("/logout", async(req, res) => {
   try {
       const cookie = req.body.cookie
       let response = await axios.get("https://paul.blueboxonline.com/api/v1/users/logout",{
@@ -108,7 +108,7 @@ app.post("/logout", async(req, res) => {
       }
 })
 
-app.post("/report", async(req, res) => {
+router.post("/report", async(req, res) => {
   try {
       const cookie = req.body.cookie;
       let reportData = req.body.reportData;

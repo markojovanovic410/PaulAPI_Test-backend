@@ -10,11 +10,7 @@ const cors= require('cors');
 
 const app = express()
 
-app.use(cors({
-  // origin: process.env.ORIGIN
-  origin: "*",
-  methods: ["GET", "POST"]
-}));
+app.use(cors());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
